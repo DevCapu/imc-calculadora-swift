@@ -9,18 +9,18 @@
 /* Begin PBXBuildFile section */
 		5502D8822ACF400C00A3E9A9 /* IMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5502D8812ACF400C00A3E9A9 /* IMCApp.swift */; };
 		5502D8842ACF400C00A3E9A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5502D8832ACF400C00A3E9A9 /* ContentView.swift */; };
-		5502D8862ACF400C00A3E9A9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5502D8852ACF400C00A3E9A9 /* Item.swift */; };
 		5502D8882ACF400E00A3E9A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5502D8872ACF400E00A3E9A9 /* Assets.xcassets */; };
 		5502D88B2ACF400E00A3E9A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5502D88A2ACF400E00A3E9A9 /* Preview Assets.xcassets */; };
+		559D57F22AD08FA1009132F5 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D57F12AD08FA1009132F5 /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5502D87E2ACF400C00A3E9A9 /* IMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5502D8812ACF400C00A3E9A9 /* IMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCApp.swift; sourceTree = "<group>"; };
 		5502D8832ACF400C00A3E9A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5502D8852ACF400C00A3E9A9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5502D8872ACF400E00A3E9A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5502D88A2ACF400E00A3E9A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		559D57F12AD08FA1009132F5 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +55,9 @@
 			children = (
 				5502D8812ACF400C00A3E9A9 /* IMCApp.swift */,
 				5502D8832ACF400C00A3E9A9 /* ContentView.swift */,
-				5502D8852ACF400C00A3E9A9 /* Item.swift */,
 				5502D8872ACF400E00A3E9A9 /* Assets.xcassets */,
 				5502D8892ACF400E00A3E9A9 /* Preview Content */,
+				559D57F12AD08FA1009132F5 /* ResultView.swift */,
 			);
 			path = IMC;
 			sourceTree = "<group>";
@@ -141,8 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5502D8842ACF400C00A3E9A9 /* ContentView.swift in Sources */,
-				5502D8862ACF400C00A3E9A9 /* Item.swift in Sources */,
 				5502D8822ACF400C00A3E9A9 /* IMCApp.swift in Sources */,
+				559D57F22AD08FA1009132F5 /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

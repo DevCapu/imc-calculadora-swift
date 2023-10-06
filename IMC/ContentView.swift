@@ -6,56 +6,124 @@
 //
 
 import SwiftUI
-import SwiftData
+
+enum Gender: String {
+    case male = "Homem"
+    case female = "Mulher"
+}
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @State private var height: Int = 180
+    @State private var weight: Int = 70
+    @State private var gender: Gender = .male
+    @State private var imc: Double = 0
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        if imc != 0 {
+            ResultView(imc: $imc, gender: gender)
+        } else {
+            VStack {
+                title
+                image
+                genderButtons
+                
+                MeasureView(image: "pencil.and.ruler", text: "Altura (cm)", value: $height)
+                MeasureView(image: "scalemass", text: "Peso (kg)", value: $weight)
+                Spacer()
+                Button {
+                    calculate()
+                } label: {
+                    Text("Calcular IMC")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity)
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+                .buttonStyle(.borderedProminent)
+            }.padding()
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
+    
+    private var selectdGenderImage: String {
+        gender == .male ? "Homem-Peso ideal" : "Mulher-Peso ideal"
     }
+    
+    private var title: some View {
+        Text("Calculadora de IMC")
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+    
+    private var image: some View {
+        Image(selectdGenderImage)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 180, height: 260)
+    }
+    
+    private var genderButtons: some View {
+        HStack(spacing: 40) {
+            GenderButton(gender: .male, selectedGender: $gender)
+            GenderButton(gender: .female, selectedGender: $gender)
+        }.padding(.bottom, 16)
+    }
+    
+    private func calculate() {
+        imc = Double(weight) / (Double(height * height) / 10000)
+    }
+}
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+struct MeasureView: View {
+    let image: String
+    let text: String
+    @Binding var value: Int
+    
+    var body: some View {
+        HStack {
+            Image(systemName: image)
+            Text(text)
+            Spacer()
+            
+            Button {
+                value -= 1
+            } label: {
+                Image(systemName: "minus.circle.fill")
             }
+            
+             Text("\(value)")
+                .font(.title2)
+                .fontWeight(.bold)
+                .frame(width: 50)
+        
+            
+            Button {
+               value += 1
+            } label: {
+                Image(systemName: "plus.circle.fill")
+            }
+        }.padding()
+            .background(.background)
+            .cornerRadius(6)
+            .shadow(color: Color(white: 0.9), radius: 3)
+            .padding(.vertical, 2)
+    }
+}
+
+struct GenderButton: View {
+    let gender: Gender
+    @Binding var selectedGender: Gender
+    var body: some View {
+        Button(gender.rawValue) {
+           selectedGender = gender
         }
+        .font(.title3)
+        .fontWeight(.semibold)
+        .fontDesign(.rounded)
+        .opacity(selectedGender == gender ? 1.0 : 0.3)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
